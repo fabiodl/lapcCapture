@@ -1,7 +1,8 @@
 import ctypes
 import numpy as np
+import time
 lib = np.ctypeslib.load_library(
-    'usbiomodule', '../helium/bin/util/usbiomodule.so')
+    'usbiomodule', '../helium/bin/util/')
 
 lib.setDirection.restype = np.ctypeslib.c_intp
 lib.setDirection.argtypes = [
@@ -30,5 +31,8 @@ class Usbio:
 
 
 usbio = Usbio()
-usbio.setDirection(1, 0xFF)
-usbio.setOutput(1, 0xFF)
+for i in range(0,10):
+    usbio.setDirection(1, 10*i)
+    time.sleep(1)
+
+#usbio.setOutput(1, 100)
