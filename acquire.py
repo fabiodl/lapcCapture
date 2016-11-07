@@ -1,15 +1,18 @@
-#from usbio import Usbio
 from lapcCapt import  LapcCapt
 
-class Usbio:
-    PORTB=1
-    PORTC=2
-    def setDirection(self,port,val):
-        pass
+fakeUsbio=False
 
-    def setOutput(self,port,val):
-        pass
+if fakeUsbio:
+    class Usbio:
+        PORTB=1
+        PORTC=2
+        def setDirection(self,port,val):
+            pass
 
+        def setOutput(self,port,val):
+            pass
+else:    
+    from usbio import Usbio
 
 class UsbioNum:
     def __init__(self):

@@ -83,17 +83,24 @@ def save(shell,hwnd,filename):
         shell.SendKeys(c)
     shell.SendKeys("{ENTER}")
     waitDisappearance(hwnd,getLoadingWin,imGraph,"save")
-    
-title="ZEROPLUS-LAP-C"
-shell = win32com.client.Dispatch('WScript.Shell')
-shell.AppActivate(title)
-hwnd=getWindowHandle(title)
 
-suffix=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+class LapcCapt:
+    def __init__(self):
+        self.title="ZEROPLUS-LAP-C"
+        self.shell = win32com.client.Dispatch('WScript.Shell')
+        self.shell.AppActivate(self.title)
+        self.hwnd=getWindowHandle(self.title)
 
-time.sleep(0.4)
-acquire(shell,hwnd)
-save(shell,hwnd,"hello"+suffix)
+    def capture(self,filename):
+        suffix=datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        time.sleep(0.4)
+        acquire(self.shell,self.hwnd)
+        save(self.shell,self.hwnd,filename+suffix)
+
+
+if __name__=="__main__":
+    lapc=LapcCapt()
+    lapc.capture("helloClass")
 
 
 

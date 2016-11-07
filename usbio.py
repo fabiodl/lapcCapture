@@ -30,9 +30,10 @@ class Usbio:
             raise Exception("Error in the execution of setOutput")
 
 
-usbio = Usbio()
-for i in range(0,10):
-    usbio.setDirection(1, 10*i)
-    time.sleep(1)
+if __name__=="__main__":
+    usbio = Usbio()
+    for i in range(0,10):
+        usbio.setOutput(1, 10*i)
+        time.sleep(1)
 
 #usbio.setOutput(1, 100)
